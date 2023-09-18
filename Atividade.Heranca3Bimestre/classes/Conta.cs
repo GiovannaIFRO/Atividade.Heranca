@@ -13,19 +13,24 @@ namespace Atividade.Heranca3Bimestre.classes
         public string Titular { get; set; }
         public double Saldo { get; set; }
 
-        /*public Conta(int nconta, string agencia, string titular, double saldo)
+        public Conta(int nconta, string agencia, string titular, double saldo)
         {
             Nconta = nconta;
             Agencia = agencia;
             Titular = titular;
             Saldo = saldo;
-        }*/
-        
-        public void Sacar(double saque)
+        }
+
+        public Conta()
         {
-            if (Saldo >= saque)
+
+        }
+        
+        public virtual void Sacar(double valor)
+        {
+            if (Saldo >= valor)
             {
-                Saldo = Saldo - saque;
+                Saldo = Saldo - valor;
                 Console.WriteLine("Saque efetuado com sucesso!");
             }
             else
@@ -34,10 +39,17 @@ namespace Atividade.Heranca3Bimestre.classes
             }
         }
 
-        public void Depositar(double deposito)
+        public void Depositar(double valor)
         {
-            Saldo = deposito + Saldo;
-            Console.WriteLine("Deposito efetuado com sucesso!");
+            if(valor >= 0)
+            {
+                Saldo = valor + Saldo;
+                Console.WriteLine("Deposito efetuado com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine("Valor invalido");
+            }
         }
 
         //base: chamando o construtor do pai, 

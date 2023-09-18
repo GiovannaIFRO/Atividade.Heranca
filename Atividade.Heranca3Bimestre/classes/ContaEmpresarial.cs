@@ -8,10 +8,18 @@ namespace Atividade.Heranca3Bimestre.classes
 {
     internal class ContaEmpresarial: Conta 
     {
-        public double Anuidaade { get; set; }
-        public double LimiteEmprestimo { get; set; }
-        public double TotalEmprestimo { get; set; } 
 
+        public double Anuidade { get; set; }
+        public double LimiteEmprestimo { get; set; }
+        public double TotalEmprestimo { get; set; }
+
+        public ContaEmpresarial(double totalEmprestimo , double limiteEmprestimo, double anuidade, int nconta, string agencia, string titular, double saldo) : 
+            base(nconta, agencia, titular, saldo)
+        {
+            this.Anuidade = anuidade;
+            this.LimiteEmprestimo = limiteEmprestimo;   
+            this.TotalEmprestimo = totalEmprestimo;
+        }
         public void FazerEmprestimo (double valor)
         {
             this.LimiteEmprestimo = Saldo;

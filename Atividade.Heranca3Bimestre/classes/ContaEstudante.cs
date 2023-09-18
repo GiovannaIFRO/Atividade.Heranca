@@ -12,21 +12,27 @@ namespace Atividade.Heranca3Bimestre.classes
         public string Cpf { get; set; }
         public string NomeInstituicao { get; set; }
 
-        public ContaEstudante()
+        public ContaEstudante(string nomeInstituicao, string cpf, double limiteChequeEspecial, int nconta, string agencia, string titular, double saldo): 
+            base(nconta,agencia,titular,saldo)//simplificação do metodo do pai
         {
-
+            this.LimiteChequeEspecial = limiteChequeEspecial;
+            this.Cpf = cpf;
+            this.NomeInstituicao = nomeInstituicao;
         }
-        public void Sacar(double valor)
+
+        public override void Sacar(double valor)//override é para sobreescrever o metodo
         {
-            if(Saldo <= LimiteChequeEspecial)
+            if(valor <= Saldo + LimiteChequeEspecial)
             {
-                base.Sacar(valor);
+                Saldo = valor - Saldo;
+
+                //base.Sacar(valor);
                 /*Saldo = valor - Saldo;
                 Console.WriteLine("Saque realizado!");*/
             }
             else
             {
-                Console.WriteLine("Não é possivél sacar!");
+                Console.WriteLine("Saldo insuficiente!");
             }
         }
     }
