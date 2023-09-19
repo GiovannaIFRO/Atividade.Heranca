@@ -13,48 +13,44 @@ namespace Atividade.Heranca3Bimestre.classes
         public double LimiteEmprestimo { get; set; }
         public double TotalEmprestimo { get; set; }
 
-        public ContaEmpresarial(double totalEmprestimo , double limiteEmprestimo, double anuidade, int nconta, string agencia, string titular, double saldo) : 
+        public ContaEmpresarial( double limiteEmprestimo, double anuidade, int nconta, string agencia, string titular, double saldo) : 
             base(nconta, agencia, titular, saldo)
         {
             this.Anuidade = anuidade;
             this.LimiteEmprestimo = limiteEmprestimo;   
-            this.TotalEmprestimo = totalEmprestimo;
         }
         public void FazerEmprestimo (double valor)
         {
             this.LimiteEmprestimo = Saldo;
             //LimiteEmprestimo = valor;
 
-            if(valor > 5000)
-            {
-                if(LimiteEmprestimo <= valor)
-                {
-                    Saldo = Saldo + valor - 5;
-                    TotalEmprestimo = valor;
-                    Console.WriteLine("O emprestimo foi realizado com sucesso!");
-                }
-                else
-                {
-                    Console.WriteLine("Não foi possivel realizar o emprestimo!");
-                }
-            }
-            else
-            {
-                if (LimiteEmprestimo <= valor)
+         
+                if(valor <= LimiteEmprestimo - TotalEmprestimo)
                 {
                     Saldo = Saldo + valor;
-                    TotalEmprestimo = valor;
+                    TotalEmprestimo = TotalEmprestimo + valor;
                     Console.WriteLine("O emprestimo foi realizado com sucesso!");
                 }
                 else
                 {
                     Console.WriteLine("Não foi possivel realizar o emprestimo!");
                 }
-            }
         }
 
-        public void Sacar(double valor)
+        public override void Sacar(double valor)
         {
+            if(valor <= Saldo)
+            {
+                Saldo = Saldo - valor;
+                if(valor >= 5000)
+                {
+                    Saldo = Saldo - 5;
+                }
+                else
+                {
+                    Console.WriteLine("Saldo insuficiente!");
+                }
+            }
             base.Sacar(valor);
         }
     }
