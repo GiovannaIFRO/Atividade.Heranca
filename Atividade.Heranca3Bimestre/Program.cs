@@ -9,12 +9,12 @@ public class Program
         string Agencia = "Ji-Paraná";
         while (true)
         {
-            Console.WriteLine("Digite " +
-            "1 Conta comum, \n " +
+            Console.WriteLine("Digite\n" +
+            "1 Conta comum, \n" +
             "2 para Conta Estudante e\n" +
             "3 para Conta Empresarial");
             int opcao = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Digite o nome do tirular:");
+            Console.Write("Digite o nome do titular:");
             string titular = Console.ReadLine() ;
             if (opcao == 1)
             {
